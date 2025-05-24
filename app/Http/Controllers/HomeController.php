@@ -34,7 +34,6 @@ class HomeController extends Controller
         $dbName = ($request->input('dbName'));
         DB::statement("CREATE DATABASE IF NOT EXISTS " . $request->input('dbName'));
 
-
         $this->addDynamicDatabase($dbName);
         $this->dynamicCrudModel($dbName);
         Config::set('database.connections.' . $dbName, [
@@ -52,6 +51,8 @@ class HomeController extends Controller
         ]);
         DB::setDefaultConnection($dbName);
         Artisan::call('migrate', ['--database' =>  $dbName, '--path' => '/database/migrations/2025_05_19_093247_crud_migration.php']);
+
+        return redirect()->route('crud.index');
     }
 
     /**
