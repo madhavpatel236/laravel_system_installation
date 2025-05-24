@@ -52,7 +52,7 @@ class HomeController extends Controller
         DB::setDefaultConnection($dbName);
         Artisan::call('migrate', ['--database' =>  $dbName, '--path' => '/database/migrations/2025_05_19_093247_crud_migration.php']);
 
-        return redirect()->route('crud.index');
+        return redirect()->route('Crud.index');
     }
 
     /**

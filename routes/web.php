@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/home');
+Route::redirect('/', '/Home');
 
-Route::resource('home', HomeController::class);
-Route::resource('crud', CrudController::class);
+Route::resource('Home', HomeController::class);
+Route::resource('Crud', CrudController::class);

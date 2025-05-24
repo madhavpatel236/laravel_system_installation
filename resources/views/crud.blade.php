@@ -1,5 +1,5 @@
 <div>
-    <form method="POST" action="{{ route('crud.store') }}">
+    <form method="POST" action="{{ route('Crud.store') }}">
         @csrf
         <lable> Name: </lable>
         <input name="Name" class="Name" id="Name" type="text" /> <br /> <br />
@@ -31,14 +31,14 @@
                 <td> {{ $each['Name'] }} </td>
                 <td> {{ $each['Age'] }} </td>
                 <td>
-                    {{-- <form method="POST", action="{{ route('crud.edit', $each->id) }}">
+                    {{-- <form method="POST", action="{{ route('Crud.edit', $each->id) }}">
                         @csrf
                         @method('PUT')
                         <button> Edit </button>
                     </form> --}}
 
-                    <a href="{{ route('crud.edit', $each->id) }}"> Edit </a>
-                    <form method="POST", action="{{ route('crud.destroy', $each->id) }}">
+                    <a href="{{ route('Crud.edit', $each->id) }}"> Edit </a>
+                    <form method="POST", action="{{ route('Crud.destroy', $each->id) }}">
                         @csrf
                         @method('DELETE')
                         <button> Delete </button>

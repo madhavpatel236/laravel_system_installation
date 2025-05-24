@@ -1,5 +1,5 @@
 <div>
-    <form name="initial_form" id="initial_form" method="post" action="{{ route('home.store') }}">
+    <form name="initial_form" id="initial_form" method="post" action="{{ route('Home.store') }}">
         @csrf
         @method('POST')
         <lable> Key: </lable>
