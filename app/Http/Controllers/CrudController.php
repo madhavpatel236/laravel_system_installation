@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CrudModel;
+use Dba\Connection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CrudController extends Controller
 {
@@ -13,7 +15,6 @@ class CrudController extends Controller
     public function index()
     {
         $users = CrudModel::all();
-        // echo "<pre>";var_dump($users[0]); exit;
         return view('crud', compact('users'));
     }
 

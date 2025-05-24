@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CrudModel extends Model
 {
-    // protected $connection = 'laravel_system_installation';
+    // new_db
+    protected $connection =
+    "'// new_db '";
     protected $table = 'crud_table';
     protected $fillable = [
         'Name',
