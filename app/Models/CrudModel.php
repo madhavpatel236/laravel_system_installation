@@ -8,7 +8,7 @@ class CrudModel extends Model
 {
     // new_db
     protected $connection =
-    "madhav72";
+    "'// new_db'";
     protected $table = 'crud_table';
     protected $fillable = [
         'Name',
