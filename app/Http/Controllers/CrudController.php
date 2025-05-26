@@ -14,6 +14,12 @@ class CrudController extends Controller
      */
     public function index()
     {
+        $routePath = base_path('config/database.php');
+        $fileContents = file_get_contents($routePath);
+        $content = '// new_db';
+        if (str_contains($fileContents, $content)) {
+            return redirect()->route('Home.index');
+        }
         $users = CrudModel::all();
         return view('crud', compact('users'));
     }
@@ -31,10 +37,10 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'Name' => 'required|string|max:255',
-            'Age' => 'required|integer|max:3',
-        ]);
+        // $request->validate([
+        //     'Name' => 'required|string|max:25   ',
+        //     'Age' => 'required|integer|min:1|max:120',
+        // ]);
 
         CrudModel::Create($request->only(['Name', 'Age']));
 
@@ -64,10 +70,12 @@ class CrudController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         // $request->validate([
-        //     'Name' => 'required',
-        //     'Age' => 'required'
+        //     'Name' => 'required|string|max:25',
+        //     'Age' => 'required|integer|min:1|max:120',
         // ]);
+
         $user = CrudModel::findOrFail($id);
         // echo "<pre>";
         // var_dump($request->only(['Name', 'Age']));
@@ -78,7 +86,8 @@ class CrudController extends Controller
         // echo "<pre>";
         // var_dump($users);
         // exit;
-        return view('crud', compact('users'));
+        return redirect()->route('Crud.index');
+        // return view('crud', compact('users'));
     }
 
     /**

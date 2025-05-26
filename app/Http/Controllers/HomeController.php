@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $routePath = base_path('config/database.php');
         $fileContents = file_get_contents($routePath);
-        $content = '// new_db' ;
+        $content = '// new_db';
         if (!str_contains($fileContents, $content)) {
             return redirect()->route('Crud.index');
         }
@@ -42,16 +42,17 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
-        // var_dump($requestData);
-        // exit;
         $constKey = Config::get('constant.key');
 
         $userKey = $request->input('key');
 
+
         if (strlen($userKey) == 0) {
             return view('homeView', ['requestData' => $requestData, 'key_error' => 'please enter your key.']);
         } elseif (strlen($userKey) < 14) {
-            return view('homeView', ['requestData' => $requestData, 'key_error' => 'Key length should be 14.']);
+            return view('homeView', ['requestData' => $requestData, 'key_error' => 'Key length should be  14.']);
+        } elseif (strlen($userKey) > 14) {
+            return view('homeView', ['requestData' => $requestData, 'key_error' => 'Key length should not be more then 14.']);
         } else {
             for ($i = 0; $i < strlen($userKey); $i++) {
                 if ($userKey[$i] != $constKey[$i]) {
@@ -59,30 +60,6 @@ class HomeController extends Controller
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-        // var_dump(str_contains($userKey, "-"));
-        // // var_dump(strlen(strstr($userKey, "")));
-        // exit;
-
-        // if (strlen(strstr($userKey, '-')) < 2) {
-        //     return view('homeView', ['key_error' => 'thre are less "-"']);
-        // } elseif (strlen(strstr($userKey, '-')) > 2) {
-        //     return view('homeView', ['key_error' => ' there are much more "-"']);
-        // } elseif (strlen(strstr($userKey, '-')) == 2) {
-        //     return view('homeView', ['key_error' => ' there']);
-        // }
-
-
-        // dump($fileContents);
-        // exit;
 
         $dbName = ($request->input('dbName'));
         DB::statement("CREATE DATABASE IF NOT EXISTS " . $request->input('dbName'));
