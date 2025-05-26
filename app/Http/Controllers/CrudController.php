@@ -31,6 +31,11 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'Name' => 'required|string|max:255',
+            'Age' => 'required|integer|max:3',
+        ]);
+
         CrudModel::Create($request->only(['Name', 'Age']));
 
         $users = CrudModel::all();
@@ -84,8 +89,7 @@ class CrudController extends Controller
         $user = CrudModel::findOrFail($id);
         $user->delete($id);
 
-        // $this->index();
-        $users = CrudModel::all();
-        return view('crud', compact('users'));
+        return redirect()->route('Crud.index');
+        // return view('crud', compact('users'));
     }
 }

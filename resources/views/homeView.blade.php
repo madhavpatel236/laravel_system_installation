@@ -20,12 +20,6 @@
 
 <script>
     $(document).ready(function() {
-        // var dbname = $('#dbName').val();
-        // var pattern = new RegExp("^[a-zA-Z_][a-zA-Z0-9_\$]{0,63}$");
-
-        // if ((pattern.test(dbname))) {
-        //     alert((pattern.test(dbname)) == false);
-        // }
         $("#dbName").on("input", validateDbName);
         $("#initial_form").submit(function(e) {
             var isValid = validateDbName();
