@@ -24,17 +24,11 @@ class CrudController extends Controller
         return view('crud', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // $request->validate([
@@ -45,36 +39,28 @@ class CrudController extends Controller
         CrudModel::Create($request->only(['Name', 'Age']));
 
         $users = CrudModel::all();
-        return view('crud', compact('users'));
+        return redirect()->route('Crud.index');
+        // return view('crud', compact('users'));
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $users = CrudModel::findOrFail($id);
         return view('editCrudPage', compact('users'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
 
-        // $request->validate([
-        //     'Name' => 'required|string|max:25',
-        //     'Age' => 'required|integer|min:1|max:120',
-        // ]);
+        $request->validate([
+            'Name' => 'required|string|max:25',
+            'Age' => 'required|integer|min:1|max:120',
+        ]);
 
         $user = CrudModel::findOrFail($id);
         // echo "<pre>";

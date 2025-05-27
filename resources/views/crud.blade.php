@@ -1,5 +1,5 @@
 <div>
-    <form method="POST" action="{{ route('Crud.store') }}" id="crud_form">
+    <form id="crud_form" method="POST" action="{{ route('Crud.store') }}">
         @csrf
         <label> Name: </label>
         <input name="Name" class="Name" id="Name" type="text" />
@@ -54,7 +54,6 @@
 
 <script>
     $(document).ready(function() {
-          
         $('#Name').on('input', validateName)
         $('#Age').on('input', validateAge)
         $('#crud_form').submit(function(e) {
@@ -63,7 +62,11 @@
             if ((!isValidateName) || (!isValidateAge)) {
                 e.preventDefault();
             }
-        })
+        }).done(function() {
+            // $("#crud_form").reset();
+            // $('#Name').html('');
+            // $('#Age').html('');
+        });
     })
 
     function validateName() {
@@ -93,6 +96,9 @@
             $('#age_error').html('Age only contains a numbers.');
             return false;
         } else if (Age > 120) {
+            $('#age_error').html('Please enter a valid age.');
+            return false;
+        } else if (Age == 0) {
             $('#age_error').html('Please enter a valid age.');
             return false;
         } else {

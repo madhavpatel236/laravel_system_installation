@@ -4,6 +4,9 @@
     @method('PUT')
     Name: <input type="text" id="Name" name="Name" value="{{ $users->Name }}" />
     <span id="name_error"> </span>
+    {{-- @error('Name')
+    <span id="name_error"> {{ $message }} </span>
+    @enderror --}}
 
     <br /> <br />
     Age: <input name="Age" id="Age" value="{{ $users->Age }}" />
@@ -13,7 +16,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<script>
+{{-- <script>
     $(document).ready(function() {
         $('#Name').on('input', validateName)
         $('#Age').on('input', validateAge)
@@ -58,12 +61,15 @@
         } else if (Age > 120) {
             $('#age_error').html('Please enter a valid age.');
             return false;
+        } else if (Age == 0) {
+            $('#age_error').html('Please enter a valid age.');
+            return false;
         } else {
             $('#age_error').html('');
             return true;
         }
     }
-</script>
+</script> --}}
 
 
 
